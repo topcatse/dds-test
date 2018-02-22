@@ -1,0 +1,34 @@
+#!/bin/bash
+
+VAR=/dds/var
+
+exec &> ${VAR}/helloworld.log
+
+DATE=$(date '+%Y-%m-%d %H:%M:%S')
+
+echo "$DATE: Starting HelloWorld"
+
+cd /dds/HelloWorld
+
+rx_start=`cat /sys/class/net/enp0s3/statistics/rx_bytes`
+tx_start=`cat /sys/class/net/enp0s3/statistics/tx_bytes`
+
+tcpdump -p udp -w ${VAR}/helloworld.pcap &
+PID_TCPDUMP=$!
+
+./publisher &
+PID=$!
+
+sleep 20
+
+kill -15 $PID
+kill -15 $PID_TCPDUMP
+
+rx_end=`cat /sys/class/net/enp0s3/statistics/rx_bytes`
+tx_end=`cat /sys/class/net/enp0s3/statistics/tx_bytes`
+
+rx=$((rx_end-rx_start))
+tx=$((tx_end-tx_start))
+
+echo "rx: $rx, tx: $tx"
+
