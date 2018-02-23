@@ -1,0 +1,3 @@
+[submodule "mongorestdocker"]
+	path = mongorestdocker
+	url = https://github.com/alexpunct/mongorestdocker.git

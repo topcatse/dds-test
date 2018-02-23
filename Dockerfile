@@ -4,10 +4,10 @@ MAINTAINER Tommy Carlsson
 
 USER root
 
-RUN apt-get update
-RUN apt-get -y install wget 
-RUN apt-get -y install iptables
-RUN apt-get -y install tcpdump
+#RUN apt-get update
+#RUN apt-get -y install wget 
+#RUN apt-get -y install iptables
+#RUN apt-get -y install tcpdump
 
 #RUN useradd -m -s /bin/bash dds
 
@@ -46,3 +46,4 @@ EXPOSE 7400
 #docker run --name=dds-container --hostname=dds --rm -ti -v `pwd`/var:/dds/var -w /dds/HelloWorld -e OSPL_URI=file:///dds/config/ospl.xml --network="host" --cap-add=NET_ADMIN -p 7400:7400 dds-image bash
 #cat /sys/class/net/enp0s3/statistics/rx_bytes
 #tcpdump -p udp -w ../var/helloworld.pcap
+#curl -X POST -H 'Content-Type: application/json' -d '{"sn": 3, "RX": 46, "TX": 47}' http://127.0.0.1:3000/api/traffic/?apiKey=ifna212ASFisfsjaAFFF
