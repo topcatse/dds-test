@@ -9,6 +9,6 @@ WORKDIR /dds
 
 #RUN pip install --no-cache-dir 
 
-COPY *.py ./
+COPY device.py ./
 
-#CMD [ "python", "./your-daemon-or-script.py" ]
+CMD [ "python", "device.py" ]

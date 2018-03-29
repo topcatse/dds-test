@@ -11,7 +11,6 @@ buffer_size = 4096
 
 def main(argv):
     port = 10000
-    client_port = 10001
 
     try:
         opts, args = getopt.getopt(argv,"hp:",["port=", "log="])
@@ -31,7 +30,7 @@ def main(argv):
             logger.setLevel(numeric_level)                        
 
     sock = socket.socket(socket.AF_INET, socket.SOCK_DGRAM)
-    client_sock = socket.socket(socket.AF_INET, socket.SOCK_DGRAM)
+    device_sock = socket.socket(socket.AF_INET, socket.SOCK_DGRAM)
 
     sock.bind(('localhost', port))
 
@@ -44,9 +43,9 @@ def main(argv):
         if data:
             info = pickle.loads(data)
             logger.info('Received: {}'.format(info))
-            client_address = (address[0], info[2])
-            sent = client_sock.sendto(data, client_address)
-            logger.debug('Sent {} bytes back to {}'.format(sent, client_address))
+            device_address = (address[0], info[2])
+            sent = device_sock.sendto(data, device_address)
+            logger.debug('Sent {} bytes back to {}'.format(sent, device_address))
 
 if __name__ == "__main__":
     main(sys.argv[1:])

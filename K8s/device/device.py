@@ -22,11 +22,11 @@ def main(argv):
     try:
         opts, args = getopt.getopt(argv,"hc:p:a:s:i:",["count=", "port=", "serveraddress=", "serverport=", "id=", "sleep=", "log="])
     except getopt.GetoptError:
-        print('client.py -c <count> -p <port> -a <serveraddress> -s <serverport> --id=<id> --sleep=<secs> --log=<debug|...>')
+        print('device.py -c <count> -p <port> -a <serveraddress> -s <serverport> --id=<id> --sleep=<secs> --log=<debug|...>')
         sys.exit(2)
     for opt, arg in opts:
         if opt == '-h':
-            print('client.py -c <count> -p <port> -a <serveraddress> -s <serverport> --id=<id> --sleep=<secs> --log=<debug|...>')
+            print('device.py -c <count> -p <port> -a <serveraddress> -s <serverport> --id=<id> --sleep=<secs> --log=<debug|...>')
             sys.exit()
         elif opt in ("-c", "--count"):
             count = int(arg)
